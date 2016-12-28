@@ -108,7 +108,7 @@
   	</ul>
   	<!--End of Collapsible Nav-->
 
-	<!--Start of Modal Structure -->
+	<!--*_*_*_*_*_*_*_* Start of Modal Structure *_*_*_*_*_*_*_*_*_* -->
 
 	<!--Start of Message Modal-->
 	<div id="msgModal" class="modal">
@@ -153,7 +153,9 @@
 		      </div>
 		    </li>
 		</ul>
+		<!--Start of Modal Content-->
 	    <div class="modal-content">
+	    	<!--Start of col-->
 	    	<div class="col s12">
 	    		<div class="collection with-header" style="margin-top:-2px;margin-bottom:-1px;">
 	    			<div class="file-field input-field collection-header center">
@@ -161,13 +163,17 @@
 				        <input type="file" onchange="readURL(this);" name="stud_image">
 				    </div>
 				</div>
+				<!--Start of Collapsible Parent-->
 				<ul class="collapsible no-shadow" data-collapsible="accordion" style="margin-top:0px;">
+				    <!--Start of First List Item-->
 				    <li>
 				      	<div class="collapsible-header blue-grey-text">
 				      		<i class="fa fa-user-circle left" aria-hidden="true"></i>
 				      		Manage account
 				      	</div>
+				      	<!--Start of Collapsible Body-->
 				      	<div class="collapsible-body">
+				      		<!--Start of Collapsible Child-->
 				      		<ul class="collapsible" data-collapsible="accordion" style="margin-top:0px;margin-bottom:-1px;border:none;">
 							    <li>
 							      	<div class="collapsible-header light">
@@ -184,6 +190,7 @@
 							      		</div>
 							      	</div>
 							    </li>
+
 							    <li>
 							      	<div class="collapsible-header light">
 							      		Email Address
@@ -200,6 +207,7 @@
 							      		</div>
 							      	</div>
 							    </li>
+
 							    <li>
 							      	<div class="collapsible-header light">
 							      		Password
@@ -218,12 +226,15 @@
 									        </div>
 							      		</div>
 							      	</div>
-
 							    </li>
-
 							</ul>
+							<!--End of Collapsible Child-->
 				      	</div>
+				      	<!--End of Collapsible Body-->
 				    </li>
+				    <!--End of First List Item-->
+
+				    <!--Start of Second List Item-->
 				    <li>
 				      	<div class="collapsible-header blue-grey-text">
 				      		<i class="fa fa-envelope left" aria-hidden="true"></i>
@@ -248,13 +259,17 @@
 				      		</div>
 				      	</div>
 				    </li>
+				    <!--End of Second List Item-->
 			  	</ul>
+			  	<!--End of Collapsible Parent-->
 	    	</div>
+	    	<!--End of col-->
 
 	    	<div class="collection">
 	    		<a href="#!" class="collection-item center">Sign out</a>
 	    	</div>
 	    </div>
+	    <!--End of Modal Content-->
 	</div>
 	<!--End of Account Modal-->
 
@@ -273,31 +288,40 @@
 		      </div>
 		    </li>
 		</ul>
+		<!--Start of Modal Content-->
 	    <div class="modal-content">
 	    	<br>
+	    	<!--Start of col-->
 	    	<div class="col s12 grey-text">
+	    		<!--Start of First Collapsible Parent-->
 				<ul class="collapsible no-shadow" data-collapsible="accordion" style="margin-top:-3px;">
+				    <!--Start of Home Info List Item-->
 				    <li>
 				      	<div class="collapsible-header">
 				      		<i class="fa fa-home left" aria-hidden="true"></i>
 				        	Home info
 				      	</div>
-				      	<div class="collapsible-body">
+				      	<!--Start of Collapsible Body Parent-->
+				      	<div class="collapsible-body light">
+				      		<!--Start of Collapsible Child-->
 				      		<ul class="collapsible no-shadow" data-collapsible="accordion" style="margin-top:0px;margin-bottom:-1px;border:none;">
+				      			<!--Start of Name List Item-->
 							    <li>
 							      	<div class="collapsible-header">
 							      		Name
-							      		<span class="badge">Gerry's Home</span>
+							      		<span class="badge grey-text text-lighten-1">Gerry's Home</span>
 							      	</div>
 							      	<div class="collapsible-body">
 							      		<div class="row">
-							      			<div class="input-field col s12">
-								          		<input id="fname" type="text" class="validate" placeholder="Enter your home name">
+							      			<div class="col s12">
+								          		<input id="fname" type="text" class="validate" placeholder="Enter your home name" style="margin-bottom:0px;">
 								        	</div>
 							      		</div>
 							      	</div>
 							    </li>
+							    <!--End of Name List Item-->
 
+							    <!--Start of About List Item-->
 							    <li>
 							      	<div class="collapsible-header">
 							        	About
@@ -308,50 +332,138 @@
 							      		</p>
 							      	</div>
 							    </li>
+							    <!--End of About List Item-->
 
+							    <!--Start of Address List Item-->
 							    <li>
 							      	<div class="collapsible-header">
 							        	Address
-							        	<span class="badge">
+							        	<span class="badge grey-text text-lighten-1">
 							        		2202
 							        		Castillejos
 							        	</span>
 							      	</div>
+
+							      	<!--Start of Address Collapsible Body-->
 							      	<div class="collapsible-body">
-
+							      		<div class="row">
+							      			<div class="col s12 center">
+							      				<h6 class="light grey-text">Enter your home address.</h6>
+							      			</div>
+							      			<div class="col s12">
+								          		<input id="address" type="text" class="validate" placeholder="Address" style="margin-bottom:0px;">
+								        	</div>
+								        	<div class="col s12">
+								          		<input id="city" type="text" class="validate" placeholder="City" style="margin-bottom:0px;">
+								        	</div>
+								        	<div class="col s12">
+								          		<input id="province" type="text" class="validate" placeholder="Province" style="margin-bottom:0px;">
+								        	</div>
+								        	<div class="col s12">
+								          		<input id="zipcode" type="text" class="validate" placeholder="Zip Code (Required)" style="margin-bottom:0px;">
+								        	</div>
+								        	<div class="col s12">
+								        		<br>
+								          		<button class="block blue btn waves-effect waves-light">Done</button>
+								        	</div>
+							      		</div>
 							      	</div>
+							      	<!--End of Address Collapsible Body-->
 							    </li>
+							    <!--End of Address List Item-->
 							</ul>
+							<!--End of Collapsible Child-->
 				      	</div>
+				      	<!--End of Collapsible Body Parent-->
 				    </li>
+				    <!--End of Home Info List Item-->
 
+				    <!--Start of Family List Item-->
 				    <li>
 				      	<div class="collapsible-header">
 				      		<i class="fa fa-users left" aria-hidden="true"></i>
 				        	Family
 				      	</div>
-				      	<div class="collapsible-body">
+				      	<!--Start of Family Collapsible Body-->
+				      	<div class="collapsible-body light">
+				      		<ul class="collapsible no-shadow" data-collapsible="accordion" style="margin-top:0px;margin-bottom:-1px;border:none;">
+							    <li>
+							      	<div class="collapsible-header">
+							      		Add family member	
+							      	</div>
+							      	<!--div class="collapsible-body">
+							      		
+							      	</div-->
+							    </li>
+						  	</ul>
 
+						  	<ul class="collapsible no-shadow" data-collapsible="accordion" style="margin-top:0px;margin-bottom:-1px;border:none;">
+							    <li>
+							      	<div class="collapsible-header">
+							      		You
+							      		<span class="badge grey-text text-lighten-1">Owner</span>
+							      	</div>
+							      	<!--div class="collapsible-body">
+							      		
+							      	</div-->
+							    </li>
+						  	</ul>
 				      	</div>
+				      	<!--End of Family Collapsible Body-->
 				    </li>
+				    <!--End of Family List Item-->
 
+				    <!--Start of Contacts List Item-->
 				    <li>
 				      	<div class="collapsible-header">
 				      		<i class="fa fa-phone left" aria-hidden="true"></i>
 				        	Contacts
 				      	</div>
-				      	<div class="collapsible-body">
+				      	<!--Start of Contatcs Collapsible Body-->
+				      	<div class="collapsible-body light">
+				      		<div class="row" style="margin:0px;">
+				      			<div class="col s12">
+				      				<h6>EMERGENCY CONTACT</h6>	
+				      			</div>
+				      		</div>
+				      		
+				      		<ul class="collapsible no-shadow" data-collapsible="accordion" style="margin-top:0px;margin-bottom:-1px;border:none;">
+				      			<li>
+				      				<div class="collapsible-header">
+				      					<a href="tel:+900300400">Local Fire Department (555)555-5555</a>
+				      				</div>
+				      			</li>
+				      		</ul>
 
+				      		<ul class="collapsible no-shadow" data-collapsible="accordion" style="margin-top:0px;margin-bottom:-1px;border:none;">
+							    <li>
+							      	<div class="collapsible-header">
+							      		Add contact	
+							      	</div>
+							      	<div class="collapsible-body">
+							      		<div class="row">
+							      			<div class="col s12">
+							      				<input id="zipcode" type="text" class="validate" placeholder="(555)555-5555" style="margin-bottom:0px;">
+
+							      			</div>
+							      		</div>
+							      		
+							      	</div>
+							    </li>
+						  	</ul>
 				      	</div>
+				      	<!--End of Contatcs Collapsible Body-->
 				    </li>
+				    <!--End of Contacts List Item-->
 				</ul>
-				
+				<!--End of First Collapsible Parent-->
+
+				<!--Start of Second Collapsible Parent-->
 				<ul class="collapsible no-shadow" data-collapsible="accordion">
 				    <li>
 				      	<div class="collapsible-header">
 				      		<i class="fa fa-plus left" aria-hidden="true"></i>
 				        	Add Product
-				        	<span class="badge grey-text text-lighten-1">comming soon</span>
 				      	</div>
 				      	<div class="collapsible-body">
 
@@ -369,8 +481,11 @@
 				      	</div>
 				    </li>
 				</ul>
+				<!--End of Second Collapsible Parent-->
 	    	</div>
+	    	<!--End of col-->
 	    </div>
+	    <!--End of Modal Content-->
 	</div>
 	<!--End of Setting Modal-->
 
