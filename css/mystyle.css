@@ -159,7 +159,7 @@ table.highlight > tbody > tr:hover {
 .card-panel{
   width: 100%;
 }
-.collapsible {
+.collapsible-nav {
   border-top: 1px solid #ddd;
   border-right: 1px solid #ddd;
   border-left: 1px solid #ddd;
@@ -203,4 +203,7 @@ span.badge {
 .modal .modal-content {
   padding-left: 0px;
   padding-right: 0px;
+}
+.modal-fixed{
+  height: 70%;
 }

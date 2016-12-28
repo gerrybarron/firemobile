@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.css" media="screen,projection" />
 	<link rel="stylesheet" type="text/css" href="css/materialize.css" media="screen,projection" />
 	<link rel="stylesheet" type="text/css" href="css/mystyle.css" media="screen,projection" />
+
 	<style>
        #map {
         height: 400px;
@@ -28,24 +29,34 @@
 			background: url(Preloader_2.gif) center no-repeat #fff;
 		}
     </style>
+
 	<!-- jQuery Library -->
 	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+
 	<script>
   		$(window).load(function() {
 			// Animate loader off screen
 			$(".se-pre-con").fadeOut("slow");;
 		});
   	</script>
+
 </head>
 <body>
 	<div class="se-pre-con"></div>
-	<ul class="collapsible" data-collapsible="accordion">
+
+	<!--Start of Collapsible Nav-->
+	<ul class="collapsible collapsible-nav" data-collapsible="accordion">
 	    <li class="grey-text">
+	    	<!--Start of Collapsible Header-->
 	      	<div class="collapsible-header" id="headertrigger">
 	      		<i class="fa fa-2x fa-chevron-down rotate right" aria-hidden="true"></i>
 	      		<img src="img/F-34x34.png" class="" style="vertical-align: middle;">
 	      	</div>
+	      	<!--End of Collapsible Header-->
+
+	      	<!--Start of Collapsible Body-->
 	      	<div class="collapsible-body white">
+
 	      		<div class="row">
 	      			<div class="col s4"></div>
 	      			<div class="col s4 center">
@@ -90,13 +101,18 @@
 	      				</a>
 	      			</div>
 	      		</div>
+
 	      	</div>
+	      	<!--End of Collapsible Body-->
 	    </li>
   	</ul>
+  	<!--End of Collapsible Nav-->
 
 	<!--Start of Modal Structure -->
+
+	<!--Start of Message Modal-->
 	<div id="msgModal" class="modal">
-		<ul class="collapsible no-shadow no-border" data-collapsible="accordion">
+		<ul class="collapsible collapsible-nav no-shadow no-border" data-collapsible="accordion">
 		    <li>
 		      <div class="collapsible-header blue white-text">
 		      	<a href="#!" class=" modal-action modal-close thin white-text left">
@@ -120,8 +136,11 @@
 	    	</div>
 	    </div>
 	</div>
-	<div id="actModal" class="modal">
-		<ul class="collapsible no-shadow no-border" data-collapsible="accordion">
+	<!--End of Message Modal-->
+
+	<!--Start of Account Modal-->
+	<div id="actModal" class="modal modal-fixed">
+		<ul class="collapsible collapsible-nav no-shadow no-border" data-collapsible="accordion">
 		    <li>
 		      <div class="collapsible-header blue-grey white-text">
 		      	<a href="#!" class=" modal-action modal-close thin white-text left">
@@ -136,20 +155,100 @@
 		</ul>
 	    <div class="modal-content">
 	    	<div class="col s12">
-	    		<div class="collection with-header" style="margin-top:-2px;">
+	    		<div class="collection with-header" style="margin-top:-2px;margin-bottom:-1px;">
 	    			<div class="file-field input-field collection-header center">
 				        <img src="img/user-add.png" id="stu_pic" width="70px" height="70px">
 				        <input type="file" onchange="readURL(this);" name="stud_image">
 				    </div>
-				    <a href="#!" class="collection-item grey-text">
-				        <i class="fa fa-user-circle left" aria-hidden="true"></i>
-				        Manage account
-				    </a>
-				    <a href="#!" class="collection-item grey-text">
-				        <i class="fa fa-envelope left" aria-hidden="true"></i>
-				        Email from F.I.R.E.
-				    </a>
 				</div>
+				<ul class="collapsible no-shadow" data-collapsible="accordion" style="margin-top:0px;">
+				    <li>
+				      	<div class="collapsible-header blue-grey-text">
+				      		<i class="fa fa-user-circle left" aria-hidden="true"></i>
+				      		Manage account
+				      	</div>
+				      	<div class="collapsible-body">
+				      		<ul class="collapsible" data-collapsible="accordion" style="margin-top:0px;margin-bottom:-1px;border:none;">
+							    <li>
+							      	<div class="collapsible-header light">
+							      		Name
+							      		<span class="badge">
+									         Gerry Barron
+							      		</span>
+							      	</div>
+							      	<div class="collapsible-body">
+							      		<div class="row">
+							      			<div class="input-field col s12">
+								          		<input id="fname" type="text" class="validate">
+								        	</div>
+							      		</div>
+							      	</div>
+							    </li>
+							    <li>
+							      	<div class="collapsible-header light">
+							      		Email Address
+							      		<span class="badge">gerrybarron@live.com</span>
+							      	</div>
+							      	<div class="collapsible-body">
+							      		<div class="row">
+							      			<div class="input-field col s12">
+									          	<input placeholder="New email address" id="" type="email" class="validate">
+									        </div>
+									        <div class="input-field col s12">
+									          	<input placeholder="Enter your password" id="" type="password" class="validate">
+									        </div>
+							      		</div>
+							      	</div>
+							    </li>
+							    <li>
+							      	<div class="collapsible-header light">
+							      		Password
+							      		<span class="badge">*******</span>
+							      	</div>
+							      	<div class="collapsible-body">
+							      		<div class="row">
+							      			<div class="input-field col s12">
+									          	<input placeholder="Old password" id="" type="password" class="validate">
+									        </div>
+									        <div class="input-field col s12">
+									          	<input placeholder="New password" id="" type="password" class="validate">
+									        </div>
+									        <div class="input-field col s12">
+									          	<input placeholder="Confirm new password" id="" type="password" class="validate">
+									        </div>
+							      		</div>
+							      	</div>
+
+							    </li>
+
+							</ul>
+				      	</div>
+				    </li>
+				    <li>
+				      	<div class="collapsible-header blue-grey-text">
+				      		<i class="fa fa-envelope left" aria-hidden="true"></i>
+				      		Email from F.I.R.E.
+				      	</div>
+				      	<div class="collapsible-body">
+				      		<div class="row">
+				      			<div class="col s7 grey-text light">
+				      				<p>Recieve an email subscription from F.I.R.E.</p>
+				      			</div>
+				      			<div class="col s5 center">
+						      		<!-- Switch -->
+						      		<div class="switch" style="padding-top:2rem;padding-bottom:2rem;">
+									    <label>
+									      Off
+									      <input type="checkbox">
+									      <span class="lever"></span>
+									      On
+									    </label>
+									 </div>	
+				      			</div>
+				      		</div>
+				      	</div>
+				    </li>
+			  	</ul>
 	    	</div>
 
 	    	<div class="collection">
@@ -157,9 +256,11 @@
 	    	</div>
 	    </div>
 	</div>
+	<!--End of Account Modal-->
 
-	<div id="stgModal" class="modal">
-		<ul class="collapsible no-shadow no-border" data-collapsible="accordion">
+	<!--Start of Setting Modal-->
+	<div id="stgModal" class="modal modal-fixed">
+		<ul class="collapsible collapsible-nav no-shadow no-border" data-collapsible="accordion">
 		    <li>
 		      <div class="collapsible-header grey white-text">
 		      	<a href="#!" class=" modal-action modal-close thin white-text left">
@@ -174,36 +275,105 @@
 		</ul>
 	    <div class="modal-content">
 	    	<br>
-	    	<div class="col s12">
-	    		<div class="collection" style="margin-top:-3px;">
-				    <a href="#!" class="collection-item grey-text">
-				        <i class="fa fa-home left" aria-hidden="true"></i>
-				        Home info
-				    </a>
-				    <a href="#!" class="collection-item grey-text">
-				        <i class="fa fa-users left" aria-hidden="true"></i>
-				        Family
-				    </a>
-				    <a href="#!" class="collection-item grey-text">
-				        <i class="fa fa-phone left" aria-hidden="true"></i>
-				        Contacts
-				    </a>
-				</div>
+	    	<div class="col s12 grey-text">
+				<ul class="collapsible no-shadow" data-collapsible="accordion" style="margin-top:-3px;">
+				    <li>
+				      	<div class="collapsible-header">
+				      		<i class="fa fa-home left" aria-hidden="true"></i>
+				        	Home info
+				      	</div>
+				      	<div class="collapsible-body">
+				      		<ul class="collapsible no-shadow" data-collapsible="accordion" style="margin-top:0px;margin-bottom:-1px;border:none;">
+							    <li>
+							      	<div class="collapsible-header">
+							      		Name
+							      		<span class="badge">Gerry's Home</span>
+							      	</div>
+							      	<div class="collapsible-body">
+							      		<div class="row">
+							      			<div class="input-field col s12">
+								          		<input id="fname" type="text" class="validate" placeholder="Enter your home name">
+								        	</div>
+							      		</div>
+							      	</div>
+							    </li>
 
-				<div class="collection">
-				    <a href="#!" class="collection-item grey-text">
-				        <i class="fa fa-plus left" aria-hidden="true"></i>
-				        Add Product
-				        <span class="badge grey-text text-lighten-1">comming soon</span>
-				    </a>
-				    <a href="#!" class="collection-item grey-text">
-				        <i class="fa fa-shopping-cart left" aria-hidden="true"></i>
-				        Buy F.I.R.E. products
-				    </a>
-				</div>
+							    <li>
+							      	<div class="collapsible-header">
+							        	About
+							      	</div>
+							      	<div class="collapsible-body">
+							      		<p>
+							      			Nothing to show here.
+							      		</p>
+							      	</div>
+							    </li>
+
+							    <li>
+							      	<div class="collapsible-header">
+							        	Address
+							        	<span class="badge">
+							        		2202
+							        		Castillejos
+							        	</span>
+							      	</div>
+							      	<div class="collapsible-body">
+
+							      	</div>
+							    </li>
+							</ul>
+				      	</div>
+				    </li>
+
+				    <li>
+				      	<div class="collapsible-header">
+				      		<i class="fa fa-users left" aria-hidden="true"></i>
+				        	Family
+				      	</div>
+				      	<div class="collapsible-body">
+
+				      	</div>
+				    </li>
+
+				    <li>
+				      	<div class="collapsible-header">
+				      		<i class="fa fa-phone left" aria-hidden="true"></i>
+				        	Contacts
+				      	</div>
+				      	<div class="collapsible-body">
+
+				      	</div>
+				    </li>
+				</ul>
+				
+				<ul class="collapsible no-shadow" data-collapsible="accordion">
+				    <li>
+				      	<div class="collapsible-header">
+				      		<i class="fa fa-plus left" aria-hidden="true"></i>
+				        	Add Product
+				        	<span class="badge grey-text text-lighten-1">comming soon</span>
+				      	</div>
+				      	<div class="collapsible-body">
+
+				      	</div>
+				    </li>
+
+				    <li>
+				      	<div class="collapsible-header">
+				      		<i class="fa fa-shopping-cart left" aria-hidden="true"></i>
+				        	Buy F.I.R.E. products
+				        	<span class="badge grey-text text-lighten-1">comming soon</span>
+				      	</div>
+				      	<div class="collapsible-body">
+
+				      	</div>
+				    </li>
+				</ul>
 	    	</div>
 	    </div>
 	</div>
+	<!--End of Setting Modal-->
+
 	<!--End of Modal Structures -->
 
   	<br>
@@ -214,6 +384,7 @@
 		<i class="fa fa-home fa-3x"></i>
 		<h6 id="txtChange">Gerry's Home</h6>
 	</div>
+
 	<!--Start of First Row-->
 	<div class="row">
         <div class="col s12">
