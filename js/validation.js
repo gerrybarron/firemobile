@@ -1,58 +1,77 @@
-var userID=[],userDname=[],userName=[],userUname=[],userPname=[],userInfo=[];
-var arycount;
+	   function updateform(){
+	   		var uname = $("#uname").val();
+
+	   		alert(uname);
+	   		$.ajax({
+			
+			type : 'POST',
+			url  : 'server/update.php',
+			data : "uname="+uname+"&udi="+idd,
+			success :  function(response)
+			   {						
+console.log(response);
+			  }
+			});
+	   }
+
 $(document).ready(function()
 {
-    getUserStatus();
+	/* validation */
+	 $("#login-form").validate({
+      rules:
+	  {
+			password: {
+			required: true,
+			},
+			username: {
+            required: true,
+            },
+	   },
+       messages:
+	   {
+            password:{
+                      required: "please enter your password"
+                     },
+            username: "please enter your username",
+       },
+	   submitHandler: submitForm	
+       });  
+	   /* validation */
+	   
+	   /* login submit */
+	   function submitForm()
+	   {		
+			var data = $("#login-form").serialize();
+				
+			$.ajax({
+				
+			type : 'POST',
+			url  : 'server/login.php',
+			data : data,
+			beforeSend: function()
+			{	
+				$("#error").fadeOut();
+				$("#btn-login").html('<span class="glyphicon glyphicon-transfer"></span> &nbsp; sending ...');
+			},
+			success :  function(response)
+			   {						
+					//if(response=="ok"){
+					if(response > 0){
+						$("#btn-login").html('<img src="btn-ajax-loader.gif" /> &nbsp; Signing In ...');
+						setTimeout(' window.location.href = "home.html?usrID='+response+'"; ',4000);
+					}
+					else{
+									
+						$("#error").fadeIn(1000, function(){						
+				$("#error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; '+response+' !</div>');
+											$("#btn-login").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Sign In');
+									});
+					}
+			  }
+			});
+				return false;
+		}
+	   /* login submit */
+
+
 });
-	
-	
-function validateForm() {
-	var x = document.forms["myform"]["username"].value;
-	var y = document.forms["myform"]["password"].value;
-	var usrnm = document.forms["myform"]["username"].value;
-	var psswrd = document.forms["myform"]["password"].value;
-
-	if (x == "" && y == "") {
-	    document.getElementById("errMsg").innerHTML = "Enter your Username and Password";
-	    return false;
-	}
-	else if (x == ""){
-	   	document.getElementById("errMsg").innerHTML = "Enter your Username";
-	    return false;
-	}
-	else if (y == ""){
-	   	document.getElementById("errMsg").innerHTML = "Enter your Password";
-	    return false;
-	}
-	else if (usrnm == userUname && psswrd == userPname){
-	   	document.getElementById("errMsg").innerHTML = "";
-	   	document.getElementById("sccMsg").innerHTML = "Account Verified. Welcome!";
-	   	return true;
-	}
-	else{
-	   	document.getElementById("errMsg").innerHTML = "Your account or password is incorrect.";
-	  	return false;
-	}
-}
-		
-function getUserStatus(){
-    $.ajax({
-      	type: "GET",
-      	url: "http://localhost/firefinal/api.php",
-      	async: false,
-      	success: function(userData){
-          	console.log(userData);
-          	for(var i=0; i<=userData.length-1; i++){
-		        userID.push(userData[i].userID);
-		        userDname.push(userData[i].userDname);
-		        userName.push(userData[i].userName);
-		        userUname.push(userData[i].userUname);
-		        userPname.push(userData[i].userPname);
-		        arycount = userData.length;
-        	}
-
-      	}
-
-    }); //end of ajax function
-    console.log(arycount);
-}

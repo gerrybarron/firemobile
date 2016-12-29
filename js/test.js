@@ -1,15 +1,59 @@
-var arrayDevice=[], aryHum=[], aryTemp=[], aryGas=[], aryLat=[], aryLong=[], markers=[],aryLoc=[],aryTstamp=[],userID=[],userDname=[],userName=[],userUname=[],userPname=[],userInfo=[],userEmail=[],userCnum=[],userGender=[],userDob=[],userAddress=[];
+var arrayDevice=[], aryHum=[], aryTemp=[], aryGas=[], aryLat=[], aryLong=[], markers=[],aryLoc=[],aryTstamp=[];
 var ctx = document.getElementById("myChart");
 var ctx2 = document.getElementById("myChart2");
 var marker, i, vicon, mydate, myChart, myChart2, directionsDisplay, directionsService, start = "", end = "", request, latlong, contentString;
 var color = Chart.helpers.color;
 var chartColors = window.chartColors;
+var shwdvcstatus="";
+var idd = getUrlParameter('usrID');
+
+function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
 
 $(document).ready(function()
-{ 
-  getDeviceStatus(); //Get Status from Dweet.io   
-  //getUserStatus();
-  getChartData(); //Get and Display Chart Data
+{   
+    //for Home
+    $.getJSON("server/view.php?uID="+idd, function(result){
+        //$.each(result, function(i, field){
+            $("#txtChange").text(result.fld_homename);
+            $("#h-name").text(result.fld_homename);
+            $("#h-address").text(result.fld_zipcode+" "+result.fld_city);
+            //console.log(result);
+        //});
+    });
+
+    //for Users
+    $.getJSON("server/view.php?uID2="+idd, function(result){
+            $("#uemail").text(result.fld_email);
+            $("#u-email").text(result.fld_email);
+            $("#u-name").text(result.fld_name);
+    });
+    //for Contacts
+    $.getJSON("server/view.php?uCon="+idd, function(result){
+            $("#c-contact").text(result.fld_cname+" "+result.fld_cnum);
+            var a = document.getElementById('c-contact');
+            var cnum = result.fld_cnum;
+            if (a) {
+                a.href = "tel:"+cnum;
+            }
+    });
+    
+    getDeviceStatus(); //Get Status from Dweet.io   
+    //getUserStatus();
+    getChartData(); //Get and Display Chart Data
+    
     for (i = 0; i < aryHum.length; i++) { 
       $("#weather_report").append('<tr><td>'+aryHum[i]+'%'+'</td><td>'+aryTemp[i]+'°C'+'</td><td>'+aryGas[i]+'</td><td>'+aryTstamp[i]+'</td></tr>');
     }
@@ -25,12 +69,23 @@ setInterval(function(){
 }, 3000);
 
 function getDeviceStatus(){//Start of getDeviceStatus function
+    $.ajax({//for devices
+        type: "GET",
+        url: "server/view.php?uDevice="+idd,
+        async: false,
+        dataType: 'json',
+        success: function(udevice){
+          console.log(udevice);
+            shwdvcstatus = udevice.fld_devicename;
+        }
+    }); //end of ajax function  
+
     $.ajax({
         type: "GET",
-        url: "https://dweet.io:443/get/dweets/for/gerrybarrontest1",
+        url: "https://dweet.io:443/get/dweets/for/"+shwdvcstatus,
         async: false,
         success: function(myData){
-          console.log(myData);
+          //console.log(myData);
           for (var i=4; i>=0;  i--) {
             aryHum.push(myData.with[i].content.Humidity);
             aryTemp.push(myData.with[i].content.Temperature);
@@ -47,32 +102,6 @@ function getDeviceStatus(){//Start of getDeviceStatus function
     }); //end of ajax function  
     //}//end of for loop
 }//end of getDeviceStatus function
-
-//Get Users Information
-function getUserStatus(){//Start of getUserStatus function
-    $.ajax({
-        type: "GET",
-        url: "http://localhost/firefinal/api.php",
-        async: false,
-        success: function(userData){
-            console.log(userData);
-            for(var i=0; i<=userData.length-1; i++){
-            userID.push(userData[i].userID);
-            userDname.push(userData[i].userDname);
-            userName.push(userData[i].userName);
-            userUname.push(userData[i].userUname);
-            userPname.push(userData[i].userPname);
-            userEmail.push(userData[i].userEmail);
-            userCnum.push(userData[i].userCnum);
-            userAddress.push(userData[i].userAddress);
-            userGender.push(userData[i].userGender);
-            userDob.push(userData[i].userDob);
-            arycount = userData.length;
-          }
-        }
-    }); //end of ajax function
-    console.log(arycount);
-}//End of getUserStatus function
 
 //Display data on the chart
 function getChartData(){//Start of getChartData function
@@ -134,17 +163,3 @@ function getChartData(){//Start of getChartData function
     });//end of myChart
     
 }//End of getChartData function
-
-function initMap() {//start of initMap function
-  var uluru = {lat: -25.363, lng: 131.044};
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
-    center: uluru,
-    mapTypeId:google.maps.MapTypeId.ROADMAP
-
-  });
-  var marker = new google.maps.Marker({
-    position: uluru,
-    map: map
-  });
-}//end of initMap function

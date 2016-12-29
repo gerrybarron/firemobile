@@ -20,12 +20,12 @@
     <div class="divider"></div>
   </div>
   <div class="container">
-    <p class="red-text center" id="errMsg"></p>
+    <p class="red-text center" id="error"></p>
     <p class="green-text center" id="sccMsg"></p>
   </div>
   <div class="container">
     <div class="container">
-      <form action="home.html" method="post" name="myform" onsubmit="return validateForm()">
+      <form id="login-form" method="post" name="myform">
         <ul class="collapsible popout" data-collapsible="accordion">
             <li>
               <div class="collapsible-header active center green-text text-darken-4"><i class=""></i>Sign in</div>
@@ -40,7 +40,7 @@
                   <input id="psswrd" type="password" class="validate" name="password">
                   <label for="psswrd">Password</label>
                 </div>
-                <button type="submit" name="login" value="Sign in" class="waves-effect waves-light btn block green darken-4">Sign in</button>
+                <button id="btn-login" type="submit" name="login" value="Sign in" class="waves-effect waves-light btn block green darken-4">Sign in</button>
                 <br>
                 <br>
               </div>
@@ -59,6 +59,7 @@
   
 
   <!--JS-->
+  <script type="text/javascript" src="js/validation.min.js"></script>
   <script type="text/javascript" src="js/validation.js"></script>
   
   <script type="text/javascript" src="js/materialize.js"></script>
