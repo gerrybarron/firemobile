@@ -6,6 +6,8 @@ var color = Chart.helpers.color;
 var chartColors = window.chartColors;
 var shwdvcstatus="";
 var idd = getUrlParameter('usrID');
+var valpass;
+
 
 function getUrlParameter(sParam) {
     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
@@ -24,12 +26,20 @@ function getUrlParameter(sParam) {
 
 $(document).ready(function()
 {   
+    $('#appendOnIt').on('click','#removeIt', function(e) {
+        $(this).remove();
+    });
     //for Home
     $.getJSON("server/view.php?uID="+idd, function(result){
         //$.each(result, function(i, field){
             $("#txtChange").text(result.fld_homename);
             $("#h-name").text(result.fld_homename);
             $("#h-address").text(result.fld_zipcode+" "+result.fld_city);
+            $("#h-nname").val(result.fld_homename);
+            $("#address").val(result.fld_address);
+            $("#province").val(result.fld_province);
+            $("#city").val(result.fld_city);
+            $("#zipcode").val(result.fld_zipcode);
             //console.log(result);
         //});
     });
@@ -39,6 +49,7 @@ $(document).ready(function()
             $("#uemail").text(result.fld_email);
             $("#u-email").text(result.fld_email);
             $("#u-name").text(result.fld_name);
+            valpass = result.fld_password;
     });
     //for Contacts
     $.getJSON("server/view.php?uCon="+idd, function(result){
@@ -58,6 +69,19 @@ $(document).ready(function()
       $("#weather_report").append('<tr><td>'+aryHum[i]+'%'+'</td><td>'+aryTemp[i]+'°C'+'</td><td>'+aryGas[i]+'</td><td>'+aryTstamp[i]+'</td></tr>');
     }
 });
+
+function appendit(){
+    var fmName =  $("#fmName").val();
+    var fmEmail = $("#fmEmail").val();
+    $("#appendOnIt").append("<li><div class='collapsible-header'>"+fmName+"<span class='badge grey-text text-lighten-1'>"+fmEmail+" <a id='removeIt' class='red'><i class='fa fa-times right red-text' aria-hidden='true'></i></a></span></div></li>");
+    
+}
+
+function conAppend(){
+    var ccname =  $("#c-cname").val();
+    var ccnum = $("#c-cnum").val();
+    $("#contactAppend").append("<li><div class='collapsible-header'><a href='tel:"+ccnum+"'>"+ccname+" "+ccnum+"</a></div></li>");
+}
 
 setInterval(function(){
   $('#txtChange').fadeOut(500, function() {
