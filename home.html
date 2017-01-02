@@ -56,44 +56,44 @@
 
 	      	<!--Start of Collapsible Body-->
 	      	<div class="collapsible-body white">
-
-	      		<div class="row">
-	      			<div class="col s4"></div>
-	      			<div class="col s4 center">
+	      	<form id="upload-img"  action="upload.php" method="post" enctype="multipart/form-data">
+	      		<div class="row valign-wrapper">
+	      			<div class="col s12 l6 center">
 	      				<br>
 	      				<!--i class="fa fa-user-circle fa-3x" aria-hidden="true"></i-->
 	      				<div class="file-field input-field">
-				            <img src="img/user-add.png" id="stu_pic" width="70px" height="70px">
-				            <input type="file" onchange="readURL(this);" name="stud_image">
+				            <img src="img/user-add.png" id="stu_pic" style="height:70px;width:70px;" class="circle">
+				            <input type="file" accept="image/*" onchange="readURL(this);" id="u_image" name="picupload">
+				            <input type="hidden" value="" id="hddnval" name="uidd">
 				        </div>
+				        <!--input class="btn btn-flat" type="submit" value="save"-->	
 	      				<h6 id="uemail"></h6>
 	      				<br>
 	      			</div>
-	      			<div class="col s4"></div>
-	      		</div>
 
-	      		<div class="row">
-	      			<div class="col s4 center">
+	      			<!--div class="col s4 center">
 	      				<a href="#msgModal" class="waves-effect waves-light blue-text">
 	      					<i class="fa fa-comment fa-2x"></i>
 	      					<h6 class="grey-text">Messages</h6>
 	      				</a>
-	      			</div>
+	      			</div-->
 
-	      			<div class="col s4 center">
+	      			<div class="col s6 l3 center valign">
 	      				<a href="#actModal" class="waves-effect waves-light blue-grey-text">
 	      					<i class="fa fa-user fa-2x"></i>
 	      					<h6 class="grey-text">Account</h6>
 	      				</a>
 	      			</div>
 
-	      			<div class="col s4 center">
+	      			<div class="col s6 l3 center valign">
 	      				<a href="#stgModal" class="waves-effect waves-light grey-text">
 	      					<i class="fa fa-cogs fa-2x"></i>
 	      					<h6 class="grey-text">Setting</h6>
 	      				</a>
 	      			</div>
 	      		</div>
+	      	</form>
+	      			
 
 	      	</div>
 	      	<!--End of Collapsible Body-->
@@ -132,7 +132,7 @@
 	<!--End of Message Modal-->
 
 	<!--Start of Account Modal-->
-	<div id="actModal" class="modal modal-fixed">
+	<div id="actModal" class="modal">
 		<ul class="collapsible collapsible-nav no-shadow no-border" data-collapsible="accordion">
 		    <li>
 		      <div class="collapsible-header blue-grey white-text">
@@ -152,8 +152,7 @@
 	    	<div class="col s12">
 	    		<div class="collection with-header" style="margin-top:-2px;margin-bottom:-1px;">
 	    			<div class="file-field input-field collection-header center">
-				        <img src="img/user-add.png" id="stu_pic" width="70px" height="70px">
-				        <input type="file" onchange="readURL(this);" name="stud_image">
+				        <img src="img/user-add.png" id="user_pic" width="70px" height="70px" class="circle">
 				    </div>
 				</div>
 				<!--Start of Collapsible Parent-->
@@ -181,8 +180,8 @@
 							      			<div class="input-field col s12">
 								          		<input id="uname" type="text" class="validate" name="uname">
 								          		<span>
-								          			<a class="btn-floating right waves-effect waves-light green" type="submit" name="done" onclick="updateform()">
-								          				<i class="fa fa-check" aria-hidden="true"></i>
+								          			<a class="block blue btn waves-effect waves-light" type="submit" name="done" onclick="updateform()">
+								          				done
 								          			</a>	
 								          		</span>
 								          		
@@ -200,14 +199,17 @@
 							      		<div class="row">
 							      			<p class="center red-text" style="padding:0px;" id="errEmail"></p>
 							      			<div class="input-field col s12">
-									          	<input placeholder="New email address" id="newEmail" type="email" class="validate">
+									          	<input placeholder="New email address" id="newEmail" type="email" class="validate" style="margin-bottom:0px;">
 									        </div>
 									        <div class="input-field col s12">
-									          	<input placeholder="Enter your password" id="upass" type="password" class="validate">
+									          	<input placeholder="Enter your password" id="upass" type="password" class="validate" style="margin-bottom:0px;">
 									        </div>
-									        <a class="btn-floating right waves-effect waves-light green" type="submit" name="done" onclick="emailupdateform()">
-								          		<i class="fa fa-check" aria-hidden="true"></i>
-								          	</a>
+									        <div class="col s12">
+									        	<br>
+									        	<a class="block blue btn waves-effect waves-light" type="submit" name="done" onclick="emailupdateform()">
+								          			done
+								          		</a>	
+									        </div>
 							      		</div>
 							      	</div>
 							    </li>
@@ -221,17 +223,20 @@
 							      		<div class="row">
 							      			<p class="center red-text" style="padding:0px;" id="errPass"></p>
 							      			<div class="input-field col s12">
-									          	<input placeholder="Old password" id="o-pass" type="password" class="validate">
+									          	<input placeholder="Old password" id="o-pass" type="password" class="validate" style="margin-bottom:0px;">
 									        </div>
 									        <div class="input-field col s12">
-									          	<input placeholder="New password" id="n-pass" type="password" class="validate">
+									          	<input placeholder="New password" id="n-pass" type="password" class="validate" style="margin-bottom:0px;">
 									        </div>
 									        <div class="input-field col s12">
-									          	<input placeholder="Confirm new password" id="c-pass" type="password" class="validate">
+									          	<input placeholder="Confirm new password" id="c-pass" type="password" class="validate" style="margin-bottom:0px;">
 									        </div>
-									        <a class="btn-floating right waves-effect waves-light green" type="submit" name="done" onclick="passwordupdateform()">
-								          		<i class="fa fa-check" aria-hidden="true"></i>
-								          	</a>
+									        <div class="col s12">
+									        	<br>
+									        	<a class="block blue btn waves-effect waves-light" type="submit" name="done" onclick="passwordupdateform()">
+								          			done
+								          		</a>	
+									        </div>
 							      		</div>
 							      	</div>
 							    </li>
@@ -244,7 +249,7 @@
 				    <!--End of First List Item-->
 
 				    <!--Start of Second List Item-->
-				    <li>
+				    <!--li>
 				      	<div class="collapsible-header blue-grey-text">
 				      		<i class="fa fa-envelope left" aria-hidden="true"></i>
 				      		Email from F.I.R.E.
@@ -255,7 +260,7 @@
 				      				<p>Recieve an email subscription from F.I.R.E.</p>
 				      			</div>
 				      			<div class="col s5 center">
-						      		<!-- Switch -->
+						      		
 						      		<div class="switch" style="padding-top:2rem;padding-bottom:2rem;">
 									    <label>
 									      Off
@@ -267,7 +272,7 @@
 				      			</div>
 				      		</div>
 				      	</div>
-				    </li>
+				    </li-->
 				    <!--End of Second List Item-->
 			  	</ul>
 			  	<!--End of Collapsible Parent-->
@@ -275,7 +280,7 @@
 	    	<!--End of col-->
 
 	    	<div class="collection">
-	    		<a href="#!" class="collection-item center">Sign out</a>
+	    		<a href="#signout" class="collection-item center">Sign out</a>
 	    	</div>
 	    </div>
 	    <!--End of Modal Content-->
@@ -283,14 +288,14 @@
 	<!--End of Account Modal-->
 
 	<!--Start of Setting Modal-->
-	<div id="stgModal" class="modal modal-fixed">
+	<div id="stgModal" class="modal">
 		<ul class="collapsible collapsible-nav no-shadow no-border" data-collapsible="accordion">
 		    <li>
 		      <div class="collapsible-header grey white-text">
 		      	<a href="#!" class=" modal-action modal-close thin white-text left">
 			      	<i class="fa fa-angle-left" aria-hidden="true"></i>
 			    </a>
-		    	Gerry's Home
+		    	Settings
 		    	<a href="#!" class=" modal-action modal-close thin white-text right">
 		        	<i class="fa fa-times" aria-hidden="true"></i>
 		        </a>
@@ -303,7 +308,7 @@
 	    	<!--Start of col-->
 	    	<div class="col s12 grey-text">
 	    		<!--Start of First Collapsible Parent-->
-	    		<form  id="setting-form" method="post" name="settingform">
+	    		<form id="setting-form" method="post" name="settingform">
 				<ul class="collapsible no-shadow" data-collapsible="accordion" style="margin-top:-3px;">
 				    <!--Start of Home Info List Item-->
 				    <li>
@@ -400,14 +405,15 @@
 									       	</div>
 									       	<div class="col s12">
 									       		<br>
-								         		<a class="block blue btn waves-effect waves-light" type="submit" onclick="appendit()">Done</a>
+								         		<a class="block blue btn waves-effect waves-light" type="submit" onclick="addfamform()">Done</a>
 								        	</div>
 							      		</div>
 							      	</div>
+							      	
 							    </li>
 						  	</ul>
 
-						  	<ul id="appendOnIt" class="collapsible no-shadow" data-collapsible="accordion" style="margin-top:0px;margin-bottom:-1px;border:none;">
+						  	<ul id="parentDiv" class="collapsible no-shadow" data-collapsible="accordion" style="margin-top:0px;margin-bottom:-1px;border:none;">
 							    <li>
 							      	<div class="collapsible-header">
 							      		You
@@ -434,16 +440,13 @@
 				      	<div class="collapsible-body light" id="taggered-contacts">
 				      		<div class="row" style="margin:0px;">
 				      			<div class="col s12">
-				      				<h6>EMERGENCY CONTACT</h6>	
+				      				<p style="padding:0px;">In case of emergency, the F.I.R.E. app gives you quick access to call this number(s).</p>
+				      				<h6>EMERGENCY CONTACT:</h6>	
 				      			</div>
 				      		</div>
 				      		
 				      		<ul id="contactAppend" class="collapsible no-shadow" data-collapsible="accordion" style="margin-top:0px;margin-bottom:-1px;border:none;">
-				      			<li>
-				      				<div class="collapsible-header">
-				      					<a id="c-contact" href="">Local Fire Department (555)555-5555</a>
-				      				</div>
-				      			</li>
+				      			
 				      		</ul>
 
 				      		<ul class="collapsible no-shadow" data-collapsible="accordion" style="margin-top:0px;margin-bottom:-1px;border:none;">
@@ -461,7 +464,7 @@
 							      			</div>
 							      			<div class="col s12">
 									       		<br>
-								         		<a class="block blue btn waves-effect waves-light" type="submit" onclick="conAppend()">Done</a>
+								         		<a class="block blue btn waves-effect waves-light" type="submit" onclick="addconform()">Done</a>
 								        	</div>
 							      		</div>
 							      		
@@ -477,7 +480,7 @@
 				<!--End of First Collapsible Parent-->
 
 				<!--Start of Second Collapsible Parent-->
-				<ul class="collapsible no-shadow" data-collapsible="accordion">
+				<!--ul class="collapsible no-shadow" data-collapsible="accordion">
 				    <li>
 				      	<div class="collapsible-header">
 				      		<i class="fa fa-plus left" aria-hidden="true"></i>
@@ -505,7 +508,7 @@
 				      		</p>
 				      	</div>
 				    </li>
-				</ul>
+				</ul-->
 				<!--End of Second Collapsible Parent-->
 
 				<!--Start of Third Collapsible Parent-->
@@ -539,7 +542,199 @@
 	</div>
 	<!--End of Setting Modal-->
 
-	<!--End of Modal Structures -->
+	<!--Start of Sign out Structure -->
+	<div id="signout" class="modal">
+		<ul class="collapsible collapsible-nav no-shadow no-border" data-collapsible="accordion">
+		    <li>
+		      <div class="collapsible-header blue white-text">
+		    	Sign out
+		    	<a href="#!" class=" modal-action modal-close thin white-text right">
+		        	<i class="fa fa-times" aria-hidden="true"></i>
+		        </a>
+		      </div>
+		    </li>
+		</ul>
+	    <div class="modal-content">
+	    	<br>
+	    	<br>
+	    	<div class="row">
+	    		<div class="col s12 center">
+	    			<p class="grey-text light">Are you sure you want to sign out?</p>
+	    		</div>
+	    	</div>
+	    </div>
+	    <div class="modal-footer">
+	      <a href="index.html" class=" modal-action modal-close waves-effect waves-red btn-flat center block red white-text">Agree</a>
+	    </div>
+	</div>
+	<!--End of Sign out Structure -->
+
+	<!--Start of Home setup 1 Structure -->
+	<div id="hsetup1" class="modal">
+		<ul class="collapsible collapsible-nav no-shadow no-border" data-collapsible="accordion">
+		    <li>
+		      <div class="collapsible-header blue white-text">
+		    	Home Setup
+		    	<!--a href="#!" class=" modal-action modal-close thin white-text left">
+		        	<i class="fa fa-angle-left" aria-hidden="true" style="margin-right: 0px;"></i>
+		        </a-->
+		      </div>
+		    </li>
+		</ul>
+	    <div class="modal-content">
+	    	<br>
+	    	<div class="row">
+	    		<div class="col s12"style="padding-left: 0px;padding-right: 0px;margin-top: -4px;">
+	    			<img src="img/table-white.jpg" width="100%">
+	    		</div>
+	    		<div class="col s12 center">
+	    			<h6 class="grey-text text-darken-3">You've set up your account. Now set up your home.</h6>
+	    			<p class="grey-text light">
+	    				Adding a new home to your F.I.R.E. Account is the first step in bringing your F.I.R.E. products together in one place. We'll start asking some questions about your home.
+	    			</p>
+	    			<a href="#hsetup2" class="modal-action modal-close btn btn-flat blue white-text block">continue</a>
+	    		</div>
+	    	</div>
+	    </div>
+	</div>
+	<!--Start of Home setup 2 Structure -->
+	<div id="hsetup2" class="modal">
+		<ul class="collapsible collapsible-nav no-shadow no-border" data-collapsible="accordion">
+		    <li>
+		      <div class="collapsible-header blue white-text">
+		    	Home Setup
+		    	<a href="#hsetup1" class=" modal-action modal-close thin white-text left">
+		        	<i class="fa fa-angle-left" aria-hidden="true" style="margin-right: 0px;"></i>
+		        </a>
+		      </div>
+		    </li>
+		</ul>
+	    <div class="modal-content">
+	    	<br>
+	    	<div class="row">
+	    		<div class="col s12"style="padding-left: 0px;padding-right: 0px;margin-top: -4px;">
+	    			<img src="img/table-white.jpg" width="100%">
+	    		</div>
+	    		<div class="col s12 center">
+	    			<h6 class="grey-text text-darken-3">What do you want to call your home?</h6>
+	    			<p class="grey-text light">
+	    				Choose a name that will be useful to you, like "Home Sweet Home" or "Rest House".
+	    			</p>    			
+	    			<form id="setuphname" method="post" name="setuphname">
+	    				<div class="input-field">
+	    					<input type="text" placeholder="Enter home name" name="shname" id="shname">
+	    				</div>
+	    				<a href="#hsetup3" onclick="setuphomename()" class="modal-action modal-close btn btn-flat blue white-text block">Next</a>
+	    			</form>
+	    			
+	    		</div>
+
+	    	</div>
+	    </div>
+	</div>
+	<!--Start of Home setup 3 Structure -->
+	<div id="hsetup3" class="modal">
+		<ul class="collapsible collapsible-nav no-shadow no-border" data-collapsible="accordion">
+		    <li>
+		      <div class="collapsible-header blue white-text">
+		    	Home Setup
+		    	<a href="#hsetup2" class=" modal-action modal-close thin white-text left">
+		        	<i class="fa fa-angle-left" aria-hidden="true" style="margin-right: 0px;"></i>
+		        </a>
+		      </div>
+		    </li>
+		</ul>
+	    <div class="modal-content">
+	    	<br>
+	    	<div class="row">
+	    		<div class="col s12 center">
+	    			<h6 class="grey-text text-darken-3">Enter your home address.</h6>    			
+	    			<form method="post" id="hsetupadd">
+	    				<div class="input-field">
+	    					<input type="text" placeholder="Address" name="shadd" id="shadd" style="margin-bottom:0px;">
+	    				</div>
+	    				<div class="input-field">
+	    					<input type="text" placeholder="City" name="shcity" id="shcity" style="margin-bottom:0px;">
+	    				</div>
+	    				<div class="input-field">
+	    					<input type="text" placeholder="Province" name="shprov" id="shprov" style="margin-bottom:0px;">
+	    				</div>
+	    				<div class="input-field">
+	    					<input type="text" placeholder="ZIP Code(Required)" name="shname" id="shzip">
+	    				</div>
+	    				<a href="#hsetup4" onclick="setupadd()" class="modal-action modal-close btn btn-flat blue white-text block">Next</a>
+	    			</form>
+	    			
+	    		</div>
+
+	    	</div>
+	    </div>
+	</div>
+	<!--Start of Home setup 4 Structure -->
+	<div id="hsetup4" class="modal">
+		<ul class="collapsible collapsible-nav no-shadow no-border" data-collapsible="accordion">
+		    <li>
+		      <div class="collapsible-header blue white-text">
+		    	Device Setup
+		    	<a href="#hsetup3" class=" modal-action modal-close thin white-text left">
+		        	<i class="fa fa-angle-left" aria-hidden="true" style="margin-right: 0px;"></i>
+		        </a>
+		      </div>
+		    </li>
+		</ul>
+	    <div class="modal-content">
+	    	<br>
+	    	<div class="row">
+	    		<div class="col s12 center">
+	    			<h6 class="grey-text text-darken-3">You've set up your home. Now set up your device.</h6>    
+	    			<p class="grey-text light">
+	    				It's almost there. But adding your device will help you monitor your home.
+	    			</p>
+	    			<form method="post" id="sethdevice">			
+	    			
+	    				<div class="input-field">
+	    					<input type="text" placeholder="Enter device name" name="shdname" id="shdname" style="margin-bottom:0px;">
+	    				</div>
+	    				<div class="input-field">
+	    					<input type="text" placeholder="Enter device key" name="shdkey" id="shdkey">
+	    				</div>
+	    				<a href="#hsetup5" onclick="setuphomedevice()" class="modal-action modal-close btn btn-flat green white-text block">Done!</a>
+	    			</form>
+	    			
+	    		</div>
+
+	    	</div>
+	    </div>
+	</div>
+	<!--Start of Home setup 5 Structure -->
+	<div id="hsetup5" class="modal">
+		<ul class="collapsible collapsible-nav no-shadow no-border" data-collapsible="accordion">
+		    <li>
+		      <div class="collapsible-header green white-text">
+		    	Complete
+		    	<a href="#!" class=" modal-action modal-close thin white-text right">
+		        	<i class="fa fa-times" aria-hidden="true" style="margin-right: 0px;"></i>
+		        </a>
+		      </div>
+		    </li>
+		</ul>
+	    <div class="modal-content">
+	    	<div class="row">
+		    	<div class="col s12"style="padding-left: 0px;padding-right: 0px;margin-top: -4px;">
+		    		<img src="img/pexels-photo.jpeg" width="100%">
+		    	</div>
+	    		<div class="col s12 center">
+	    			<h6 class="grey-text text-darken-3">You finish to setup your home and device</h6>    
+	    			<p class="grey-text light">
+	    				Thank you for completing~!
+	    			</p>
+	    			<a href="#!" class="modal-action modal-close btn btn-flat green white-text block">Ok</a>
+	    		</div>
+
+	    	</div>
+	    </div>
+	</div>
+	<!--*_*_*_*_*_*_*_*End of Modal Structures*_*_*_*_*_*_*_*-->
 
   	<br>
   	<br>
@@ -551,7 +746,7 @@
 	</div>
 
 	<!--Start of First Row-->
-	<div class="row">
+	<div id="thisdiv" class="row">
         <div class="col s12">
         	<div class="card">
 			    <div class="card-image waves-effect waves-block waves-light">
@@ -612,7 +807,7 @@
 
 	<div class="row">
 		<div class="col s12 center">
-			<a href="#!" class="btn-large waves-effect waves-light grey lighten-1 btn-floating">
+			<a href="#hsetup1" class="btn-large waves-effect waves-light grey lighten-1 btn-floating">
 				<i class="fa fa-plus fa-2x" aria-hidden="true"></i>
 			</a>
 		</div>
@@ -648,8 +843,8 @@
                 reader.onload = function (e) {
                     $('#stu_pic')
                         .attr('src', e.target.result)
-                        .width(200)
-                        .height(200);
+                        .width(70)
+                        .height(70);
                 };
 
                 reader.readAsDataURL(input.files[0]);

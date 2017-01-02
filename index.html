@@ -25,33 +25,63 @@
   </div>
   <div class="container">
     <div class="container">
-      <form id="login-form" method="post" name="myform">
+      
         <ul class="collapsible popout" data-collapsible="accordion">
             <li>
+            
               <div class="collapsible-header active center green-text text-darken-4"><i class=""></i>Sign in</div>
               <div class="collapsible-body container">
+              <form id="login-form" method="post" name="myform">
                 <div class="input-field">
                   <i class="fa fa-user prefix"></i>
-                  <input id="usrnm" type="text" class="validate" name="username">
-                  <label for="usrnm">Username</label>
+                  <input id="usrnm" type="email" class="validate" name="username" placeholder="Email">
                 </div>
                 <div class="input-field">
                   <i class="fa fa-key prefix"></i>
-                  <input id="psswrd" type="password" class="validate" name="password">
-                  <label for="psswrd">Password</label>
+                  <input id="psswrd" type="password" class="validate" name="password" placeholder="Password">
                 </div>
                 <button id="btn-login" type="submit" name="login" value="Sign in" class="waves-effect waves-light btn block green darken-4">Sign in</button>
+
                 <br>
                 <br>
+                <div class="center">
+                  <a href="" style="">Forgot my password</a>
+                </div>
+                <br>
+                </form>  
               </div>
+               
             </li>
+            <li>
+            
+              <div class="collapsible-header active center green-text text-darken-4"><i class=""></i>Sign up</div>
+              <div class="collapsible-body container">
+              <form id="singup-form" method="post" name="myform">
+                <div class="input-field">
+                  <i class="fa fa-user prefix"></i>
+                  <input id="usrnm2" type="email" class="validate" name="username2" placeholder="Email">
+                </div>
+                <div class="input-field">
+                  <i class="fa fa-key prefix"></i>
+                  <input id="psswrd2" type="password" class="validate" name="password2" placeholder="Password">
+                </div>
+                <div class="input-field">
+                  <i class="fa fa-key prefix"></i>
+                  <input id="psswrd3" type="password" class="validate" name="password3" placeholder="Re-enter password">
+                </div>
+                <a id="btn-signup" name="login" class="waves-effect waves-light btn block green darken-4" onclick="signupform()">Sign up</a>
+                <br>
+                <br>
+                </form>
+
+              </div>
+              
+            </li>
+            
           </ul>
-      </form> 
+      
     </div>
       
-    <div class="center">
-      <a href="" style="">Forgot my password</a>
-    </div>
     <br>
     <br>
     

@@ -7,7 +7,8 @@ var chartColors = window.chartColors;
 var shwdvcstatus="";
 var idd = getUrlParameter('usrID');
 var valpass;
-
+var counter = 1;
+var homenamestatus;
 
 function getUrlParameter(sParam) {
     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
@@ -26,12 +27,16 @@ function getUrlParameter(sParam) {
 
 $(document).ready(function()
 {   
-    $('#appendOnIt').on('click','#removeIt', function(e) {
-        $(this).remove();
-    });
+    //$("#removeIt").click(function() {
+        //var idrmv = $("#removeIt").closest("li").prop("id");
+        //alert(idrmv);
+        //alert(this.id);
+    //});
+        
     //for Home
     $.getJSON("server/view.php?uID="+idd, function(result){
         //$.each(result, function(i, field){
+            homenamestatus = result.fld_homename;
             $("#txtChange").text(result.fld_homename);
             $("#h-name").text(result.fld_homename);
             $("#h-address").text(result.fld_zipcode+" "+result.fld_city);
@@ -40,6 +45,8 @@ $(document).ready(function()
             $("#province").val(result.fld_province);
             $("#city").val(result.fld_city);
             $("#zipcode").val(result.fld_zipcode);
+            $("#hddnval").val(idd);
+            
             //console.log(result);
         //});
     });
@@ -50,43 +57,55 @@ $(document).ready(function()
             $("#u-email").text(result.fld_email);
             $("#u-name").text(result.fld_name);
             valpass = result.fld_password;
+            $('#stu_pic').attr('src', "img/"+result.fld_pic);
+            $('#user_pic').attr('src', "img/"+result.fld_pic);
     });
+
     //for Contacts
     $.getJSON("server/view.php?uCon="+idd, function(result){
-            $("#c-contact").text(result.fld_cname+" "+result.fld_cnum);
-            var a = document.getElementById('c-contact');
-            var cnum = result.fld_cnum;
-            if (a) {
-                a.href = "tel:"+cnum;
+            for (var i = 0; i<=result.length - 1; i++) {
+                $("#contactAppend").append("<li><div class='collapsible-header'><a href='tel:"+result[i].fld_cnum+"'>"+result[i].fld_cname+" "+result[i].fld_cnum+"</a></div></li>");
+                //$("#c-contact").text(result.fld_cname+" "+result.fld_cnum);
+                //var a = document.getElementById('c-contact');
+                //var cnum = result.fld_cnum;
+                //if (a) {
+                    //a.href = "tel:"+cnum;
+                //}
             }
     });
-    
+
+    //for Family
+    $.getJSON("server/view.php?uFam="+idd, function(result){
+           console.log(result)
+        for (var i = 0; i<=result.length - 1; i++) {
+            $("#parentDiv").append("<li id='removethis'><div class='collapsible-header'>"+result[i].fld_fmname
+                +"<span class='badge grey-text text-lighten-1'>"+result[i].fld_femail+"</span></div></li>");
+            //<div class='collapsible-body'><div class='row'><div class='col s12'><a id='removeIt' class='red btn block waves-effect waves-light'><i class='fa fa-times right red-text' aria-hidden='true'></i></a></div></div></div>
+        };
+    });
     getDeviceStatus(); //Get Status from Dweet.io   
     //getUserStatus();
     getChartData(); //Get and Display Chart Data
+    tabledata();
     
+});
+
+function tabledata(){
     for (i = 0; i < aryHum.length; i++) { 
       $("#weather_report").append('<tr><td>'+aryHum[i]+'%'+'</td><td>'+aryTemp[i]+'°C'+'</td><td>'+aryGas[i]+'</td><td>'+aryTstamp[i]+'</td></tr>');
     }
-});
-
-function appendit(){
-    var fmName =  $("#fmName").val();
-    var fmEmail = $("#fmEmail").val();
-    $("#appendOnIt").append("<li><div class='collapsible-header'>"+fmName+"<span class='badge grey-text text-lighten-1'>"+fmEmail+" <a id='removeIt' class='red'><i class='fa fa-times right red-text' aria-hidden='true'></i></a></span></div></li>");
-    
 }
-
-function conAppend(){
-    var ccname =  $("#c-cname").val();
-    var ccnum = $("#c-cnum").val();
-    $("#contactAppend").append("<li><div class='collapsible-header'><a href='tel:"+ccnum+"'>"+ccname+" "+ccnum+"</a></div></li>");
-}
+//function myFunction() {
+  //  var item = document.getElementById("removethis"+counter);
+    //var aux=item.parentNode;
+   // aux.removeChild(item);
+   // console.log(item);
+//}
 
 setInterval(function(){
   $('#txtChange').fadeOut(500, function() {
         var $this = $(this);
-        $this.text($this.text() == 'Gerry\'s Home' ? '29°C Mostly Cloudy' : 'Gerry\'s Home');        
+        $this.text($this.text() == homenamestatus ? '29°C Mostly Cloudy' : homenamestatus);        
         $this.toggleClass('first second');        
         $this.fadeIn(500);
     });
@@ -101,9 +120,12 @@ function getDeviceStatus(){//Start of getDeviceStatus function
         success: function(udevice){
           console.log(udevice);
             shwdvcstatus = udevice.fld_devicename;
+            if (udevice.fld_devicename == null || udevice.fld_devicename =="") {
+                $('#hsetup1').modal('open');
+            }
         }
     }); //end of ajax function  
-
+    
     $.ajax({
         type: "GET",
         url: "https://dweet.io:443/get/dweets/for/"+shwdvcstatus,

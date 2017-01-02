@@ -29,8 +29,16 @@ if(isset($_GET["uCon"])){
 	$home = $dbh->prepare("SELECT * FROM tbl_contacts WHERE fld_userID = :fld_userID");
 	$home->bindParam(":fld_userID", $id);
 	$home->execute();
-	$data = $home->fetch(PDO::FETCH_ASSOC); 
+	$data = $home->fetchAll(PDO::FETCH_ASSOC); 
 	echo json_encode($data);
 }
 
+if(isset($_GET["uFam"])){
+	$id = $_GET["uFam"];
+	$home = $dbh->prepare("SELECT * FROM tbl_family WHERE fld_userID = :fld_userID");
+	$home->bindParam(":fld_userID", $id);
+	$home->execute();
+	$data = $home->fetchAll(PDO::FETCH_ASSOC); 
+	echo json_encode($data);
+}
 ?>

@@ -11,7 +11,9 @@
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
      $('.tooltipped').tooltip({delay: 50});
-     $('.modal').modal();
+     $('.modal').modal({
+      dismissible: false
+     });
       $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 15 // Creates a dropdown of 15 years to control year

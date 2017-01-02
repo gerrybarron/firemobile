@@ -17,8 +17,14 @@ if(isset($_POST["login"])) {
 		//}
 		echo $data["fld_userID"];
 	}
+	else if(empty($username)){
+		echo "Please enter a valid email address";
+	}
+	else if(empty($password)){
+		echo "Please enter the password for your F.I.R.E account";
+	}
 	else{
-		echo "Username and password incorrect";
+		echo "Username or password incorrect";
 	}
 }
 ?>
